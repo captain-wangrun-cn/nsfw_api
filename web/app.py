@@ -61,6 +61,10 @@ def single_classify():
         single_image = {'url': request.args.get('url')}
         result = classify_from_urls([single_image]).next()
         return jsonify(result)
+    elif "url" in request.get_json():
+        single_image = {'url': request.get_json()['url']}
+        result = classify_from_urls([single_image]).next()
+        return jsonify(result)
     else:
         return "Missing  url parameter", 400
 
