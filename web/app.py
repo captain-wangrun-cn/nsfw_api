@@ -55,7 +55,7 @@ def batch_classify():
     return Response(stream_predictions(), mimetype='application/json')
 
 
-@app.route('/')
+@app.route('/',methods=["GET","POST"])
 def single_classify():
     if request.args.has_key('url'):
         single_image = {'url': request.args.get('url')}
@@ -109,4 +109,3 @@ def classify(image_data, nsfw_net):
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0')
-
